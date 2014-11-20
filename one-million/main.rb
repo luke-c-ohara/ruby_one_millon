@@ -4,7 +4,7 @@ words_hash = {0=>"zero",1=>"one",2=>"two",3=>"three",4=>"four",5=>"five",6=>"six
 
 units = {3=>"hundred", 4=>"thousand"}
 
-(1..9999).each do |num|
+(1..99999).each do |num|
 
   split = num.to_s.split('').map { |digit| digit.to_i }
   size = split.length
@@ -24,6 +24,13 @@ units = {3=>"hundred", 4=>"thousand"}
       no_of_hundreds = split[1]
       hundreds = size - 1
       puts "#{words_hash[first]} #{units[size]}, #{words_hash[no_of_hundreds]} #{units[hundreds]} and #{words_hash[tens.to_i]}" 
+    when 5
+      first = split[0].to_s + split[1].to_s
+      tens = split[3].to_s + split[4].to_s
+      no_of_hundreds = split[2]
+      hundreds = size - 2
+      thousands = size - 1
+      puts "#{words_hash[first.to_i]} #{units[thousands]}, #{words_hash[no_of_hundreds]} #{units[hundreds]} and #{words_hash[tens.to_i]}" 
   end
 end
 
