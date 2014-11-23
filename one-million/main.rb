@@ -6,7 +6,7 @@ require 'pry-byebug'
 
     units = {3=>"hundred", 4=>"thousand", 5=>"million"}
 
-    (1..20).each do |num|
+    (99999..110000).each do |num|
 
       split = num.to_s.split('').map { |digit| digit.to_i }
       size = split.length
@@ -14,27 +14,39 @@ require 'pry-byebug'
       first = split[0].to_s
       tens = split[size-2].to_s + split[size-1].to_s
 
+      conjunctive = if tens == "00"
+                     ""
+                    else
+                    "and"
+                    end
+
+      conjunctive_2 = if split[1].to_s + split[2].to_s == "00"
+                      ""
+                    else
+                    "and"
+                    end
+
       case size
         when 1 , 2
           puts words_hash[num]
         when 3
-          puts "#{words_hash[first.to_i]} #{units[size]} and #{words_hash[tens.to_i]}"  
+          puts "#{words_hash[first.to_i]} #{units[size]} #{conjunctive} #{words_hash[tens.to_i]}"  
         when 4
           no_of_hundreds = split[1]
           hundreds = size - 1
-          puts "#{words_hash[first.to_i]} #{units[size]} #{words_hash[no_of_hundreds]} #{units[hundreds]} and #{words_hash[tens.to_i]}" 
+          puts "#{words_hash[first.to_i]} #{units[size]} #{words_hash[no_of_hundreds]} #{units[hundreds]} #{conjunctive} #{words_hash[tens.to_i]}" 
         when 5
           first_tens = split[0].to_s + split[1].to_s
           no_of_hundreds = split[2]
           hundreds = size - 2
           thousands = size - 1
-          puts "#{words_hash[first_tens.to_i]} #{units[thousands]} #{words_hash[no_of_hundreds]} #{units[hundreds]} and #{words_hash[tens.to_i]}" 
+          puts "#{words_hash[first_tens.to_i]} #{units[thousands]} #{words_hash[no_of_hundreds]} #{units[hundreds]} #{conjunctive} #{words_hash[tens.to_i]}" 
         when 6
           tens_h = split[1].to_s + split[2].to_s
           no_of_hundreds = split[3]
           hundreds = size - 3
           thousands = size - 2
-          puts "#{words_hash[first.to_i]} #{units[hundreds]} and #{words_hash[tens_h.to_i]} #{units[thousands]} #{words_hash[no_of_hundreds]} #{units[hundreds]} and #{words_hash[tens.to_i]}" 
+          puts "#{words_hash[first.to_i]} #{units[hundreds]} #{conjunctive_2} #{words_hash[tens_h.to_i]} #{units[thousands]} #{words_hash[no_of_hundreds]} #{units[hundreds]} #{conjunctive} #{words_hash[tens.to_i]}" 
         when 7
           millions = size - 2
           puts "#{words_hash[first.to_i]} #{units[millions]}"
