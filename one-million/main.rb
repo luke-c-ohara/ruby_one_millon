@@ -6,41 +6,36 @@ def numbers_to_words
 
   units = {3=>"hundred", 4=>"thousand", 5=>"million"}
 
-  (1..100).each do |num|
+  (1000..1500).each do |num|
 
     split = num.to_s.split('').map { |digit| digit.to_i }
     size = split.length
+
+    first = split[0].to_s
+    tens = split[size-2].to_s + split[size-1].to_s
 
     case size
       when 1 , 2
         puts words_hash[num]
       when 3
-        first = split[0]
-        tens = split[1].to_s + split[2].to_s
-        puts "#{words_hash[first]} #{units[size]} and #{words_hash[tens.to_i]}"  
+        puts "#{words_hash[first.to_i]} #{units[size]} and #{words_hash[tens.to_i]}"  
       when 4
-        first = split[0]
-        tens = split[2].to_s + split[3].to_s
         no_of_hundreds = split[1]
         hundreds = size - 1
-        puts "#{words_hash[first]} #{units[size]} #{words_hash[no_of_hundreds]} #{units[hundreds]} and #{words_hash[tens.to_i]}" 
+        puts "#{words_hash[first.to_i]} #{units[size]} #{words_hash[no_of_hundreds]} #{units[hundreds]} and #{words_hash[tens.to_i]}" 
       when 5
-        first = split[0].to_s + split[1].to_s
-        tens = split[3].to_s + split[4].to_s
+        first_tens = split[0].to_s + split[1].to_s
         no_of_hundreds = split[2]
         hundreds = size - 2
         thousands = size - 1
-        puts "#{words_hash[first.to_i]} #{units[thousands]} #{words_hash[no_of_hundreds]} #{units[hundreds]} and #{words_hash[tens.to_i]}" 
+        puts "#{words_hash[first_tens.to_i]} #{units[thousands]} #{words_hash[no_of_hundreds]} #{units[hundreds]} and #{words_hash[tens.to_i]}" 
       when 6
-        first = split[0].to_s 
         tens_h = split[1].to_s + split[2].to_s
-        tens = split[4].to_s + split[5].to_s
         no_of_hundreds = split[3]
         hundreds = size - 3
         thousands = size - 2
         puts "#{words_hash[first.to_i]} #{units[hundreds]} and #{words_hash[tens_h.to_i]} #{units[thousands]} #{words_hash[no_of_hundreds]} #{units[hundreds]} and #{words_hash[tens.to_i]}" 
       when 7
-        first = split[0].to_s
         millions = size - 2
         puts "#{words_hash[first.to_i]} #{units[millions]}"
     end
