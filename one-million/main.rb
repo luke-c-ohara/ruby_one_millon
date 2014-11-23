@@ -6,7 +6,7 @@ require 'pry-byebug'
 
     units = {3=>"hundred", 4=>"thousand", 5=>"million"}
 
-    (888888..999999).each do |num|
+    (998000..1000000).each do |num|
 
       split = num.to_s.split('').map { |digit| digit.to_i }
       size = split.length
@@ -14,9 +14,7 @@ require 'pry-byebug'
       first = split[0].to_s
       tens = split[size-2].to_s + split[size-1].to_s
 
-      hundreds = num.to_s.split('').reverse
-
-      new_hundred = units[3]
+      new_hundred = units[0]
 
       conjunctive = if tens == "00"
                      ""
@@ -30,13 +28,13 @@ require 'pry-byebug'
                     "and"
                     end              
  
-      hundreds_test = " " + units[new_hundred].to_s + " " + conjunctive + " " + words_hash[tens.to_i].to_s
+      hundreds_test = " " + units[3].to_s + " " + conjunctive + " " + words_hash[tens.to_i].to_s
 
       case size
         when 1 , 2
           puts words_hash[num]
         when 3
-          puts "#{words_hash[first.to_i]} #{units[size]} #{conjunctive} #{words_hash[tens.to_i]}"  
+          puts "#{words_hash[first.to_i]}" + hundreds_test  
         when 4
           no_of_hundreds = split[1]
           hundreds = size - 1
