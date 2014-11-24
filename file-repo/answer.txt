@@ -1,0 +1,25 @@
+The system should be a small file repository to allow shared access to a number of different assets such as images, Microsoft Excel and Word files, and Adobe Acrobat PDFs.
+
+Ruby on Rails, PostGres database simplity when deploying to Herkou, wireframes to plan style and feel for site.
+
+1. There are a number of users who access the system using their email address and password. 
+
+Devise ruby gem. cancancan for permissions
+
+2. Each user can either browse through the assets by category, or search based on title, keywords or description. 
+
+Ransack for search?
+
+3. The user can choose to download assets directly to their computer: there is no "shopping cart" functionality.
+
+For the case of images, users should have the option to download the image at a size of their choosing. For example, is a hi-res image is uploaded, the user should be able to choose that they want to receive a 640x480 image back. The system should deliver a resized version to the user while retaining the original.
+
+Form to allow user input to select size of image downloaded.
+
+5. New assets can be uploaded by any user. Once uploaded, the asset can be assigned to one or more categories (the user can create new categories, in a style of your choice).
+
+Carrierwave, 
+
+6. The asset will also have an amount of arbitrary metadata such as title, keywords and description, each of which are user entered.
+
+Form when uploading, selecting category etc.
