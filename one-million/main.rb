@@ -1,3 +1,7 @@
+# The code passes the test written and hopefully meets the spec given.
+# 95% of the code works ok but I've had to use a gsub for the final part due to the way I went about the code from the start. Because the index of the numbers units, tens, hundreds etc changes as the numbers grow larger it makes it more difficult to write dynamic and DRY code.
+# If I had the time again I would start by reversing the number so that the units, tens, hundreds would all be in the same place, then possibly split the larger numbers into three and work from there. Hindsight is a wonderful thing!
+
 require 'pry-byebug'
 
   def numbers_to_words(num)
@@ -48,20 +52,6 @@ require 'pry-byebug'
       return_value.strip
   end
 
-  (998..1100).map do |num|
+  (9999..11000).map do |num|
     puts numbers_to_words(num)
-  end
-
-  puts numbers_to_words(6)
-
-
-
-
-
-
-
-
-
-
-
-  
+  end 
